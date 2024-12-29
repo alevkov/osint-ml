@@ -5,6 +5,9 @@ import { db } from "@db";
 import { users } from "@db/schema";
 import { eq } from "drizzle-orm";
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 // Hash password with salt
 export function hashPassword(password: string, salt = randomBytes(16).toString('hex')): [string, string] {
   const hash = pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
